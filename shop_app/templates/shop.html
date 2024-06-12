@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Shop
+{% endblock %}
+
+{% block content %}
+    {% for product in products %}
+        <h1>Product name: {{ product.name }}</h1>
+        <h2>Product price: {{ product.price }}</h2>
+        <h3>Product count: {{ product.count }}</h3>
+        <h4>Product description: {{ product.description }}</h4>
+        <h5>Product discount: {{ product.discount }}</h5>
+        <button class = 'buy' id = '{{ product.id }}'> Buy {{ product.id }}</button>
+    {% endfor %}
+
+    <script src="{{ url_for('shop.static', filename = 'js/set_cookie.js') }}"></script>
+{% endblock %}

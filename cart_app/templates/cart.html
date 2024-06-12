@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block content %}
+    <h1>Корзина</h1>
+    {% if products %}
+        {% for product in products %}
+            <div id = 'product-{{ product.id }}'>
+                <h1>Product name: {{ product.name }}</h1>
+                <h2>Product price: {{ product.price }}</h2>
+                <h3>Product discount: {{ product.discount }}</h3>
+                <button class= "minus" id = "{{ product.id }}">-</button>
+                <h4>{{ product.count }}</h4>
+                <button class= "plus" id = "{{ product.id }}">+</button>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>Корзина порожня</h2>
+    {% endif %} 
+    <script src= "{{ url_for('cart.static', filename = 'js/deleteCookies.js') }}"></script>
+{% endblock %}

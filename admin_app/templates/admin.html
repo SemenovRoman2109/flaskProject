@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Admin
+{% endblock %}
+
+{% block content %}
+    <form style="display: none;" method="POST" class="modal" enctype="multipart/form-data">
+        <input style="display: none;" type="file" name="image" class="newImage">
+        <input type="text" name="name" class="newName" placeholder="newName">
+        <input type="hidden" name="id" class="saveId">
+        <button class="send-button" type="submit">Сохранить новое изображение</button>
+    </form>
+    {% for product in list_product %}
+        <div id = 'product-{{ product.id }}'>
+            <img src="{{ url_for('admin.static', filename = 'img/'+product.name+'.png') }}" alt="">
+            <h4>Change image:</h4>
+            <input type="file" class="change-image" id="change-img-{{ product.id }}" accept="image/*">
+            <h1>Product name: {{ product.name }}</h1>
+            <button class="change-name" id="change-name-{{ product.id }}">Change name</button>
+            <h2>Product price: {{ product.price }}</h2>
+            <h3>Product discount: {{ product.discount }}</h3>
+            <h4>Product count: {{ product.count }}</h4>
+            <p>Product description: {{ product.description }}</p>
+            <button class="delete-product" id = "delete-{{ product.id }}">Видалити</button>
+        </div>
+        <hr>
+    {% endfor %}
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="price" placeholder="Price">
+        <input type="text" name="discount" placeholder="Discount">
+        <input type="text" name="count" placeholder="Count">
+        <textarea placeholder="description" name="description"></textarea>
+        <button type="submit">Сохранить продукт</button>
+    </form>
+    
+    <script src= "{{ url_for('admin.static', filename = 'js/changeProduct.js') }}"></script>
+{% endblock %}

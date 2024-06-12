@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cторiнка реєстрації
+{% endblock %}
+
+{% block content %}
+    {% if is_auth == True %}
+        <h3 class="message">Ви вже аворизованi</h3>
+    {% else %}
+        <form method="post" class="form_auth">
+            <label>Введіть ваше ім'я:</label>
+            <input type="text" name="name">
+            <label>Введіть пароль:</label>
+            <input type="password" name="password">
+            <button type="submit">Відправити</button>
+        </form>
+    {% endif %}
+{% endblock %}
